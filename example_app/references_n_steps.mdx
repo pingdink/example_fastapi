@@ -1,0 +1,85 @@
+#Starting in a directory on the terminal 
+#made some directories for this example app
+#Copying from here a lot
+https://fastapi.tiangolo.com/deployment/docker/#dockerfile
+
+###
+#needed the right versions cause the Dockerfile didn't build
+###
+
+https://pypi.org/project/fastapi/
+
+https://pypi.org/project/pydantic/
+
+#Key Configs for running this code
+Screenshot: doc_items/fastapi_success
+
+okay - now trying to get this cloned from a git repo
+then built
+then deployed
+
+So Clone from repo
+Currently we're gonna just build and deploy locally
+probaly can also install container registry on cluster
+
+
+ok
+Jul 25
+now I'm looking at talos linux
+https://www.talos.dev/v1.7/talos-guides/install/local-platforms/docker/
+
+Looks like a way more secure way of doing things
+also this
+https://github.com/xunholy/k8s-gitops/tree/main
+
+Looks like it may take care of everything for me to some extent
+The question is getting the homelab up and running and then accessible 
+basically - no one access the cluster
+that is done via flux
+people access github and make commits
+
+those get pushed and the flux deploys
+there's 
+sys admins - the SRE's they manage the running env
+setup of the stuff
+
+developers write code
+
+business people get access to applications that have user management as part of the app
+this is for agile tooling being built
+
+everyday users have their own instance of tools and data 
+
+learner
+
+
+-----
+
+So 
+go home
+install talos on proxmox
+install flux cd there and connect it to the git repo
+deploy the example app etc
+
+look into the rasbernettes setup and replicating that
+
+
+Step 1: Generate Your SSH Key
+
+$ ssh-keygen -t rsa -b 4096 -C "example@example.com"
+Step 2: Use the Key
+
+$ eval $(ssh-agent -s)
+Then add the key we just generated. If you selected a different path than the default, be sure to replace that path in the command.
+
+ssh-add ~/.ssh/id_rsa
+Step 3: Add the SSH Key on GitHub
+
+clip < ~/.ssh/id_rsa.pub
+if clip not found then add the next command
+
+cat ~/.ssh/id_rsa.pub
+Finally Result something like on your cmd
+
+ssh-rsa AAAAB3NzaC1yc2EAAAAD173Oe1kp0Ojnsn7sRWt/XT5nFH3CSTv6VWyxq4YUJ4ZykWa5opyiAJmvtjxOMCmVTuX2r1T4Livn0foHGt7+66FJXrXUQgyJ4RXanufb3bAekxbFPg3S6Gyr2kk+I3TYWcFsLLwjU0VVJwodQkpyygAUzhomx9OQ0FMpfkQa5VrZnaSLjjtNOUSAaq30e7JWYxtoVih2HfVkcmqc53QjY4T3Xb0cmLZF3EmwCeB66dgJtpTNMvM54ceD30INsaMFNqG8XjbJtGUCHYEIR5l/LI20K5F25BRTnCzRV9dB5FUJ8taVMGRHJob9PDUdxpA2HEJYilm8ZbLbRmKJtU+H91WNCG6pvy9Yf9MREkOZQHcWIuAsH8uJvTTbqm1eAY2g34FjarRdqZIpvdxkrErDHqh4k42owNEmHjSaAw53Y8M54fjBdFHTjGDqHBamlKcIzQbin/czFq1a+pgopIANDhZjWZNvMiTak7BjVrVOciKD3Pa/KKy03nSEfEGExLbFEi1Q8QEGd6idtUAjL7fyVPWatRwCnOvGLMPTk73m7t0IAYTm4n7dO0S5OeWTUPTT+8vIfFCmE9OT2aJDIpZY1+f8Q== youremail@gmail.com
+copy from your cmd and go to your GitHub account setting find ssh and gpg keys
